@@ -16,7 +16,7 @@ std::vector<sf::CircleShape> quadratic() {
     // (x^2-300) + 200
 
     std::vector<sf::CircleShape> output;
-    for (float x = 0; x <= 600; x += 0.1) {
+    for (float x = 0; x <= 600; x += 0.5) {
         sf::CircleShape circle(camera.zoomScale * 2);
         circle.setPosition(x,(window.getSize().y - (1.0f/20.0f * ((x-300.f)*(x-300.f))+200.f)));
         output.push_back(circle);
@@ -82,7 +82,7 @@ int main()
             }
         }
 
-        // std::cout << window.mapPixelToCoords(sf::Mouse::getPosition(window)).x << ", " << window.mapPixelToCoords(sf::Mouse::getPosition(window)).y << std::endl;
+        std::cout << window.mapPixelToCoords(sf::Mouse::getPosition(window)).x << ", " << window.mapPixelToCoords(sf::Mouse::getPosition(window)).y << std::endl;
         // std::cout << camera.zoomScale << std::endl;
 
         // clear the window with black color
