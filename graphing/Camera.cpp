@@ -53,3 +53,8 @@ void Camera::cameraRight(Camera &camera)
 {
 	camera.move(camera.moveSpeed, 0);
 }
+
+namespace globals {
+	sf::RenderWindow window(sf::VideoMode(1520, 980), "My window");
+	Camera camera(window);
+}
