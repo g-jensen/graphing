@@ -17,7 +17,7 @@ std::vector<sf::CircleShape> quadratic() {
 
     std::vector<sf::CircleShape> output;
     for (float x = 0; x <= 600; x += 0.1) {
-        sf::CircleShape circle(2);
+        sf::CircleShape circle(camera.zoomScale * 2);
         circle.setPosition(x,(window.getSize().y - (1.0f/20.0f * ((x-300.f)*(x-300.f))+200.f)));
         output.push_back(circle);
     }
