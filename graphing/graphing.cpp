@@ -26,14 +26,14 @@ std::vector<sf::CircleShape> quadratic() {
 
 sf::RectangleShape xaxis() {
     sf::View view = window.getView();
-    sf::RectangleShape output(sf::Vector2f(view.getSize().x,5));
+    sf::RectangleShape output(sf::Vector2f(view.getSize().x, camera.zoomScale * 5));
     output.setPosition(view.getCenter().x - (view.getSize().x / 2.0f), 0);
     return output;
 }
 
 sf::RectangleShape yaxis() {
     sf::View view = window.getView();
-    sf::RectangleShape output(sf::Vector2f(view.getSize().y, 5));
+    sf::RectangleShape output(sf::Vector2f(view.getSize().y, camera.zoomScale* 5));
     output.setPosition(0,view.getCenter().y + (view.getSize().y / 2.0));
     output.rotate(-90);
     return output;
@@ -68,7 +68,8 @@ int main()
             }
         }
 
-        std::cout << window.mapPixelToCoords(sf::Mouse::getPosition(window)).x << ", " << window.mapPixelToCoords(sf::Mouse::getPosition(window)).y << std::endl;
+        //std::cout << window.mapPixelToCoords(sf::Mouse::getPosition(window)).x << ", " << window.mapPixelToCoords(sf::Mouse::getPosition(window)).y << std::endl;
+        // std::cout << camera.zoomScale << std::endl;
 
         // clear the window with black color
         window.clear(sf::Color::Black);
