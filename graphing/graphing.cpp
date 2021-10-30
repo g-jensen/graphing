@@ -82,7 +82,7 @@ int main()
             }
         }
 
-        // std::cout << window.mapPixelToCoords(sf::Mouse::getPosition(window)).x << ", " << window.mapPixelToCoords(sf::Mouse::getPosition(window)).y << std::endl;
+         std::cout << window.mapPixelToCoords(sf::Mouse::getPosition(window)).x << ", " << window.mapPixelToCoords(sf::Mouse::getPosition(window)).y << std::endl;
         // std::cout << camera.zoomScale << std::endl;
 
         // clear the window with black color
