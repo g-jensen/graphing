@@ -66,9 +66,23 @@ int main()
                     camera.zoom(1.1);
                 }
             }
+            if (event.type == sf::Event::KeyPressed) {
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+                    camera.move(camera.zoomScale * -camera.moveSpeed,0);
+                }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+                    camera.move(camera.zoomScale * camera.moveSpeed, 0);
+                }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+                    camera.move(0, camera.zoomScale * -camera.moveSpeed);
+                }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+                    camera.move(0, camera.zoomScale * camera.moveSpeed);
+                }
+            }
         }
 
-        //std::cout << window.mapPixelToCoords(sf::Mouse::getPosition(window)).x << ", " << window.mapPixelToCoords(sf::Mouse::getPosition(window)).y << std::endl;
+        // std::cout << window.mapPixelToCoords(sf::Mouse::getPosition(window)).x << ", " << window.mapPixelToCoords(sf::Mouse::getPosition(window)).y << std::endl;
         // std::cout << camera.zoomScale << std::endl;
 
         // clear the window with black color
