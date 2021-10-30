@@ -31,7 +31,6 @@ void Camera::zoom(float magnitude)
 	if (zoomScale*magnitude > minZoom && zoomScale*magnitude < maxZoom) {
 		this->zoomScale *= magnitude;
 		this->view.zoom(magnitude);
-		std::cout << std::to_string(this->zoomScale) << std::endl;
 	}
 }
 

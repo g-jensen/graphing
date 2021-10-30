@@ -1,11 +1,17 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "Camera.h"
+#include <iostream>
 
 sf::RenderWindow window(sf::VideoMode(1520, 980), "My window");
 Camera camera(window);
 
-std::vector<sf::CircleShape> quadratic() {\
+
+//sf::RectangleShape linear(float slope, float yintercept) {
+//
+//}
+
+std::vector<sf::CircleShape> quadratic() {
 
     // (x^2-300) + 200
 
@@ -18,10 +24,27 @@ std::vector<sf::CircleShape> quadratic() {\
     return output;
 }
 
+sf::RectangleShape xaxis() {
+    sf::View view = window.getView();
+    sf::RectangleShape output(sf::Vector2f(view.getSize().x,5));
+    output.setPosition(view.getCenter().x - (view.getSize().x / 2.0f), 0);
+    return output;
+}
+
+sf::RectangleShape yaxis() {
+    sf::View view = window.getView();
+    sf::RectangleShape output(sf::Vector2f(view.getSize().y, 5));
+    output.setPosition(0,view.getCenter().y + (view.getSize().y / 2.0));
+    output.rotate(-90);
+    return output;
+}
 
 int main()
 {
-    // create the window
+
+    sf::RectangleShape v(sf::Vector2f(1000,5));
+    v.setPosition(100, 700);
+    v.setRotation(-45);
 
     // run the program as long as the window is open
     while (window.isOpen())
@@ -45,17 +68,19 @@ int main()
             }
         }
 
-        sf::CircleShape circle(10);
-        circle.setPosition(200, 200);
+        std::cout << window.mapPixelToCoords(sf::Mouse::getPosition(window)).x << ", " << window.mapPixelToCoords(sf::Mouse::getPosition(window)).y << std::endl;
 
         // clear the window with black color
         window.clear(sf::Color::Black);
 
         // draw everything here...
-        // window.draw(...);
+        window.draw(xaxis());
+        window.draw(yaxis());
+
         for (auto i : quadratic()) {
             window.draw(i);
         }
+
 
         // end the current frame
         window.display();
