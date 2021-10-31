@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "Camera.h"
+#include "OverlayUI.h"
 #include <iostream>
 
 sf::RenderWindow window(sf::VideoMode(1520, 980), "My window");
@@ -41,6 +42,8 @@ sf::RectangleShape yaxis() {
 
 int main()
 {
+    OverlayUI overlayUI;
+    sf::RectangleShape inverseButton = overlayUI.createInverseButton();
 
     sf::RectangleShape v(sf::Vector2f(1000,5));
     v.setPosition(100, 700);
@@ -80,7 +83,7 @@ int main()
                     camera.move(0, camera.zoomScale * camera.moveSpeed);
                 }
             }
-        }
+        }   
 
          std::cout << window.mapPixelToCoords(sf::Mouse::getPosition(window)).x << ", " << window.mapPixelToCoords(sf::Mouse::getPosition(window)).y << std::endl;
         // std::cout << camera.zoomScale << std::endl;
@@ -89,6 +92,7 @@ int main()
         window.clear(sf::Color::Black);
 
         // draw everything here...
+        window.draw(inverseButton);
         window.draw(xaxis());
         window.draw(yaxis());
 
