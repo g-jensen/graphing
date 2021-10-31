@@ -19,7 +19,7 @@ std::vector<sf::CircleShape> quadratic(float coef, float xOffset, float yOffset)
     for (
             float x = view.getCenter().x - (view.getSize().x / 2.0f) - xOffset;
             x <= view.getCenter().x + (view.getSize().x / 2.0f) - xOffset; 
-            x += 0.1 * Globals::camera.zoomScale
+            x += 0.1 * (Globals::camera.zoomScale / 0.0171801f)
         ) {
         sf::CircleShape circle;
         //circle.setSize(sf::Vector2f(Globals::camera.zoomScale * 2, Globals::camera.zoomScale * 2));
@@ -43,6 +43,10 @@ sf::RectangleShape xaxis() {
     return output;
 }
 
+//std::vector<sf::Text> xNumberline() {
+//
+//}
+
 sf::RectangleShape yaxis() {
     sf::View view = Globals::window.getView();
     sf::RectangleShape output(sf::Vector2f(view.getSize().y, Globals::camera.zoomScale * 2));
@@ -53,6 +57,8 @@ sf::RectangleShape yaxis() {
 
 int main()
 {
+    Globals::camera.move(Globals::camera.view.getSize().x / -2, Globals::camera.view.getSize().y / -2);
+    Globals::camera.zoom(0.0171801f);
     // run the program as long as the window is open
     while (Globals::window.isOpen())
     {
@@ -90,7 +96,7 @@ int main()
         }
 
         // std::cout << Globals::window.mapPixelToCoords(sf::Mouse::getPosition(Globals::window)).x << ", " << Globals::window.mapPixelToCoords(sf::Mouse::getPosition(Globals::window)).y << std::endl;
-        // std::cout << Globals::camera.zoomScale << std::endl;
+        std::cout << Globals::camera.zoomScale << std::endl;
 
         // clear the window with black color
         Globals::window.clear(sf::Color::Black);
@@ -99,8 +105,8 @@ int main()
         Globals::window.draw(xaxis());
         Globals::window.draw(yaxis());
 
-        std::vector<sf::CircleShape> graph = quadratic(1.0 / 3.0, 500, 500);
-        std::cout << graph.size() << std::endl;
+        std::vector<sf::CircleShape> graph = quadratic(1.0 / 3.0, 5, 5);
+        // std::cout << graph.size() << std::endl;
         for (auto i : graph) {
             Globals::window.draw(i);
         }
