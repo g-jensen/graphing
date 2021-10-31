@@ -19,7 +19,7 @@ std::vector<sf::CircleShape> quadratic(float coef, float xOffset, float yOffset)
     for (
             float x = view.getCenter().x - (view.getSize().x / 2.0f) - xOffset;
             x <= view.getCenter().x + (view.getSize().x / 2.0f) - xOffset; 
-            x += 0.2 * Globals::camera.zoomScale
+            x += 0.1 * Globals::camera.zoomScale
         ) {
         sf::CircleShape circle;
         //circle.setSize(sf::Vector2f(Globals::camera.zoomScale * 2, Globals::camera.zoomScale * 2));
@@ -29,7 +29,9 @@ std::vector<sf::CircleShape> quadratic(float coef, float xOffset, float yOffset)
                 sf::Vector2f(x + xOffset,coef * (x*x) + yOffset)
             )
         );
-        output.push_back(circle);
+        if (circle.getPosition().y >= view.getCenter().y - view.getSize().y / 2.0 && circle.getPosition().y <= view.getCenter().y + view.getSize().y / 2.0) {
+            output.push_back(circle);
+        }
     }
     return output;
 }
@@ -97,7 +99,9 @@ int main()
         Globals::window.draw(xaxis());
         Globals::window.draw(yaxis());
 
-        for (auto i : quadratic(1.0/3.0,500,500)) {
+        std::vector<sf::CircleShape> graph = quadratic(1.0 / 3.0, 500, 500);
+        std::cout << graph.size() << std::endl;
+        for (auto i : graph) {
             Globals::window.draw(i);
         }
         
