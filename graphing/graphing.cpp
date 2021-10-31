@@ -9,14 +9,26 @@
 //
 //}
 
-std::vector<sf::CircleShape> quadratic() {
+sf::Vector2f plot(sf::Vector2f v) {
+    return sf::Vector2f(v.x,-v.y);
+}
 
-    // (x^2-300) + 200
-
+std::vector<sf::CircleShape> quadratic(float coef, float xOffset, float yOffset) {
     std::vector<sf::CircleShape> output;
-    for (float x = 0; x <= 600; x += 0.5) {
-        sf::CircleShape circle(Globals::camera.zoomScale * 2);
-        circle.setPosition(x,(Globals::window.getSize().y - (1.0f/20.0f * ((x-300.f)*(x-300.f))+200.f)));
+    sf::View view = Globals::window.getView();
+    for (
+            float x = view.getCenter().x - (view.getSize().x / 2.0f) - xOffset;
+            x <= view.getCenter().x + (view.getSize().x / 2.0f) - xOffset; 
+            x += 0.2 * Globals::camera.zoomScale
+        ) {
+        sf::CircleShape circle;
+        //circle.setSize(sf::Vector2f(Globals::camera.zoomScale * 2, Globals::camera.zoomScale * 2));
+        circle.setRadius(Globals::camera.zoomScale * 2);
+        circle.setPosition(
+            plot(
+                sf::Vector2f(x + xOffset,coef * (x*x) + yOffset)
+            )
+        );
         output.push_back(circle);
     }
     return output;
@@ -24,14 +36,14 @@ std::vector<sf::CircleShape> quadratic() {
 
 sf::RectangleShape xaxis() {
     sf::View view = Globals::window.getView();
-    sf::RectangleShape output(sf::Vector2f(view.getSize().x, Globals::camera.zoomScale * 5));
+    sf::RectangleShape output(sf::Vector2f(view.getSize().x, Globals::camera.zoomScale * 2));
     output.setPosition(view.getCenter().x - (view.getSize().x / 2.0f), 0);
     return output;
 }
 
 sf::RectangleShape yaxis() {
     sf::View view = Globals::window.getView();
-    sf::RectangleShape output(sf::Vector2f(view.getSize().y, Globals::camera.zoomScale * 5));
+    sf::RectangleShape output(sf::Vector2f(view.getSize().y, Globals::camera.zoomScale * 2));
     output.setPosition(0,view.getCenter().y + (view.getSize().y / 2.0));
     output.rotate(-90);
     return output;
@@ -75,8 +87,8 @@ int main()
             }
         }
 
-        std::cout << Globals::window.mapPixelToCoords(sf::Mouse::getPosition(Globals::window)).x << ", " << Globals::window.mapPixelToCoords(sf::Mouse::getPosition(Globals::window)).y << std::endl;
-        // std::cout << camera.zoomScale << std::endl;
+        // std::cout << Globals::window.mapPixelToCoords(sf::Mouse::getPosition(Globals::window)).x << ", " << Globals::window.mapPixelToCoords(sf::Mouse::getPosition(Globals::window)).y << std::endl;
+        // std::cout << Globals::camera.zoomScale << std::endl;
 
         // clear the window with black color
         Globals::window.clear(sf::Color::Black);
@@ -85,10 +97,10 @@ int main()
         Globals::window.draw(xaxis());
         Globals::window.draw(yaxis());
 
-        for (auto i : quadratic()) {
+        for (auto i : quadratic(1.0/3.0,500,500)) {
             Globals::window.draw(i);
         }
-
+        
         // end the current frame
         Globals::window.display();
 
