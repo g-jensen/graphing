@@ -49,7 +49,7 @@ void Camera::cameraLeft(Camera &camera)
 	camera.move(-camera.moveSpeed, 0);
 }
 
-void Camera::cameraRight(Camera &camera)
+void Camera::cameraRight(Camera& camera)
 {
 	camera.move(camera.moveSpeed, 0);
 }
