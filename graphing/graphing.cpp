@@ -105,7 +105,7 @@ int main()
         Globals::window.draw(xaxis());
         Globals::window.draw(yaxis());
 
-        std::vector<sf::CircleShape> graph = quadratic(1.0 / 3.0, 5, 5);
+        std::vector<sf::CircleShape> graph = quadratic(1, 0, 0);
         // std::cout << graph.size() << std::endl;
         for (auto i : graph) {
             Globals::window.draw(i);

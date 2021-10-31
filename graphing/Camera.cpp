@@ -4,7 +4,7 @@
 Camera::Camera(sf::View& view)
 {
 	this->maxZoom = 256.f;
-	this->minZoom = 0.0001f;
+	this->minZoom = 0.0000001f;
 	this->zoomScale = 1;
 	this->moveSpeed = 50.f;
 	this->zoomAmount = 1.5f;
@@ -14,7 +14,7 @@ Camera::Camera(sf::View& view)
 Camera::Camera(sf::RenderWindow& window)
 {
 	this->maxZoom = 256.f;
-	this->minZoom = 0.0001f;
+	this->minZoom = 0.0000001f;
 	this->zoomScale = 1;
 	this->moveSpeed = 50.f;
 	this->zoomAmount = 1.5f;
