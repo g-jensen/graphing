@@ -9,6 +9,8 @@
 //
 //}
 
+// removes the trailing zeros of a number
+// ex: 15.430000 -> 15.43
 std::string trimZeros(std::string input) {
     int i = input.length() - 1;
     while (input[i] == '0') {
@@ -21,10 +23,12 @@ std::string trimZeros(std::string input) {
     return input;
 }
 
+// Takes in normal coordinates and returns the coordinates to plot that in SFML
 sf::Vector2f plot(sf::Vector2f v) {
     return sf::Vector2f(v.x,-v.y);
 }
 
+// Returns the circles part of a quadratic function
 std::vector<sf::CircleShape> quadratic(float coef, float xOffset, float yOffset) {
     std::vector<sf::CircleShape> output;
     sf::View view = Globals::window->getView();
@@ -48,6 +52,7 @@ std::vector<sf::CircleShape> quadratic(float coef, float xOffset, float yOffset)
     return output;
 }
 
+// returns rectangle to draw the x-axis
 sf::RectangleShape xaxis() {
     sf::View view = Globals::window->getView();
     sf::RectangleShape output(sf::Vector2f(view.getSize().x, Globals::camera.zoomScale * 2));
@@ -56,7 +61,7 @@ sf::RectangleShape xaxis() {
 }
 
 sf::Font font;
-
+// returns a list of texts that are the numbers on the numberline that are visible in the view
 std::vector<sf::Text> xNumberline() {
     font.loadFromFile("fonts/Ubuntu-Regular.ttf");
     std::vector<sf::Text> output;
@@ -111,6 +116,7 @@ std::vector<sf::Text> xNumberline() {
     return output;
 }
 
+// returns rectangle to draw the y-axis
 sf::RectangleShape yaxis() {
     sf::View view = Globals::window->getView();
     sf::RectangleShape output(sf::Vector2f(view.getSize().y, Globals::camera.zoomScale * 2));
