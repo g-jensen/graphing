@@ -5,8 +5,7 @@
 class OverlayUI
 {
     public:
-
-
+        
         sf::RectangleShape createInverseButton();
 
         sf::Vector2f findFuncMin();
@@ -14,9 +13,7 @@ class OverlayUI
 
 
 
-        void setFunction(std::string input) {
-            function = input;
-        };
+        std::string setFunction(std::string input);
 
         std::string getFunction() {
             return function;
