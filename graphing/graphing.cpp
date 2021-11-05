@@ -1,8 +1,13 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "Camera.h"
 #include <iostream>
+
+#include "Camera.h"
 #include "Globals.h"
+#include "addNode.h"
+#include "numNode.h"
+#include "multNode.h"
+#include "divideNode.h"
 
 
 //sf::RectangleShape linear(float slope, float yintercept) {
@@ -127,7 +132,7 @@ sf::RectangleShape yaxis() {
 
 int main()
 {
-    Globals::camera.move(Globals::camera.view.getSize().x / -2, Globals::camera.view.getSize().y / -2);
+    /*Globals::camera.move(Globals::camera.view.getSize().x / -2, Globals::camera.view.getSize().y / -2);
     Globals::camera.zoom(0.0171801f);
     // run the program as long as the window is open
     while (Globals::window->isOpen())
@@ -190,9 +195,23 @@ int main()
         Globals::window->display();
 
         Globals::window->setView(Globals::camera.view);
-    }
+    }*/
 
     delete Globals::window;
+
+
+    exprNode* n1 = new numNode(10);
+    exprNode* n2 = new numNode(5);
+    exprNode* n3 = new numNode(7);
+
+    exprNode* a1 = new multNode(n1, n2);
+    exprNode* root = new divideNode(a1, n3);
+
+    std::cout << root->eval() << std::endl;
+
+    int a;
+    std::cin >> a;
+
 
     return 0;
 }
