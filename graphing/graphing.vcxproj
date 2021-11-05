@@ -143,12 +143,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="addNode.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="exprNode.cpp" />
     <ClCompile Include="graphing.cpp" />
+    <ClCompile Include="numNode.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="addNode.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="exprNode.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="numNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
