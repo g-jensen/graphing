@@ -7,6 +7,6 @@ multNode::multNode() {
 multNode::multNode(exprNode* left, exprNode* right) : exprNode(left, right) {
 }
 
-float multNode::eval() {
-    return left->eval() * right->eval();
+float multNode::eval(float variable) {
+    return left->eval(variable) * right->eval(variable);
 }

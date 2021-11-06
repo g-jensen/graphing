@@ -36,6 +36,9 @@
     <ClCompile Include="divideNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="variableNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -57,6 +60,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="divideNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="variableNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

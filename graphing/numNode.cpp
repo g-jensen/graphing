@@ -8,6 +8,6 @@ numNode::numNode(float val) : val(val) {
 
 }
 
-float numNode::eval() {
+float numNode::eval(float variable) {
     return val;
 }

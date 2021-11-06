@@ -8,11 +8,7 @@
 #include "numNode.h"
 #include "multNode.h"
 #include "divideNode.h"
-
-
-//sf::RectangleShape linear(float slope, float yintercept) {
-//
-//}
+#include "variableNode.h"
 
 // removes the trailing zeros of a number
 // ex: 15.430000 -> 15.43
@@ -33,27 +29,35 @@ sf::Vector2f plot(sf::Vector2f v) {
     return sf::Vector2f(v.x,-v.y);
 }
 
-// Returns the circles part of a quadratic function
-std::vector<sf::CircleShape> quadratic(float coef, float xOffset, float yOffset) {
+// Returns the circles to draw of a function
+std::vector<sf::CircleShape> getGraph(exprNode* root) {
     std::vector<sf::CircleShape> output;
     sf::View view = Globals::window->getView();
+
     for (
-            float x = view.getCenter().x - (view.getSize().x / 2.0f) - xOffset;
-            x <= view.getCenter().x + (view.getSize().x / 2.0f) - xOffset; 
+            float x = view.getCenter().x - (view.getSize().x / 2.0f);
+            x <= view.getCenter().x + (view.getSize().x / 2.0f); 
             x += 0.1 * (Globals::camera.zoomScale / 0.0171801f)
         ) {
         sf::CircleShape circle;
         //circle.setSize(sf::Vector2f(Globals::camera.zoomScale * 2, Globals::camera.zoomScale * 2));
         circle.setRadius(Globals::camera.zoomScale * 2);
+
+
+
         circle.setPosition(
             plot(
-                sf::Vector2f(x + xOffset,coef * (x*x) + yOffset)
+                sf::Vector2f(x,root->eval(x))
             )
         );
+
+
+
         if (circle.getPosition().y >= view.getCenter().y - view.getSize().y / 2.0 && circle.getPosition().y <= view.getCenter().y + view.getSize().y / 2.0) {
             output.push_back(circle);
         }
     }
+
     return output;
 }
 
@@ -117,7 +121,7 @@ std::vector<sf::Text> xNumberline() {
         text.setPosition(plot(sf::Vector2f(x,-0.1 * Globals::camera.zoomScale / 0.0171801f)));
         output.push_back(text);
     }
-    std::cout << output.size() << std::endl;
+    // std::cout << output.size() << std::endl;
     return output;
 }
 
@@ -132,7 +136,14 @@ sf::RectangleShape yaxis() {
 
 int main()
 {
-    /*Globals::camera.move(Globals::camera.view.getSize().x / -2, Globals::camera.view.getSize().y / -2);
+    exprNode* v = new variableNode();
+    exprNode* n1 = new multNode(v,v);
+    exprNode* n2 = new multNode(n1,n1);
+    exprNode* n3 = new multNode(n2, v);
+    exprNode* root = n3;/*new multNode(n1, v);*/
+
+
+    Globals::camera.move(Globals::camera.view.getSize().x / -2, Globals::camera.view.getSize().y / -2);
     Globals::camera.zoom(0.0171801f);
     // run the program as long as the window is open
     while (Globals::window->isOpen())
@@ -180,7 +191,9 @@ int main()
         Globals::window->draw(xaxis());
         Globals::window->draw(yaxis());
 
-        std::vector<sf::CircleShape> graph = quadratic(1, 1, 0);
+        
+
+        std::vector<sf::CircleShape> graph = getGraph(root);
         // std::cout << graph.size() << std::endl;
         for (auto i : graph) {
             Globals::window->draw(i);
@@ -195,23 +208,11 @@ int main()
         Globals::window->display();
 
         Globals::window->setView(Globals::camera.view);
-    }*/
+    }
 
     delete Globals::window;
 
-
-    exprNode* n1 = new numNode(10);
-    exprNode* n2 = new numNode(5);
-    exprNode* n3 = new numNode(7);
-
-    exprNode* a1 = new multNode(n1, n2);
-    exprNode* root = new divideNode(a1, n3);
-
-    std::cout << root->eval() << std::endl;
-
-    int a;
-    std::cin >> a;
-
+    delete root;
 
     return 0;
 }

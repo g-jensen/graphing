@@ -5,7 +5,7 @@ public:
     exprNode();
     exprNode(exprNode* left, exprNode* right);
     ~exprNode();
-    virtual float eval() = 0;
+    virtual float eval(float variable) = 0;
 protected:
     exprNode* left;
     exprNode* right;

@@ -7,6 +7,6 @@ addNode::addNode() {
 addNode::addNode(exprNode* left, exprNode* right) : exprNode(left, right) {
 }
 
-float addNode::eval() {
-    return left->eval() + right->eval();
+float addNode::eval(float variable) {
+    return left->eval(variable) + right->eval(variable);
 }

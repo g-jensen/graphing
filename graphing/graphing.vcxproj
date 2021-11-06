@@ -150,6 +150,7 @@
     <ClCompile Include="graphing.cpp" />
     <ClCompile Include="multNode.cpp" />
     <ClCompile Include="numNode.cpp" />
+    <ClCompile Include="variableNode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="addNode.h" />
@@ -159,6 +160,7 @@
     <ClInclude Include="Globals.h" />
     <ClInclude Include="multNode.h" />
     <ClInclude Include="numNode.h" />
+    <ClInclude Include="variableNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
