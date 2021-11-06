@@ -21,7 +21,7 @@ sf::Vector2f OverlayUI::findFuncMin()
 
 	for (int i = sf::Window::getSize.x; i < sf::Window::getSize.x / 2, i++) {
 		// figure out how each circle of the graph will be numbered
-		// figure out how to algorithimically sort to lowest point of y
+		// figure out how to algorithimically sort to lowest point of y figuire
 	}
 
 	return sf::Vector2f();
