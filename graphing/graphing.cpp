@@ -9,6 +9,9 @@
 #include "multNode.h"
 #include "divideNode.h"
 #include "variableNode.h"
+#include "sinNode.h"
+#include "cosNode.h"
+#include "tanNode.h"
 
 // removes the trailing zeros of a number
 // ex: 15.430000 -> 15.43
@@ -137,10 +140,11 @@ sf::RectangleShape yaxis() {
 int main()
 {
     exprNode* v = new variableNode();
-    exprNode* n1 = new multNode(v,v);
-    exprNode* n2 = new multNode(n1,n1);
-    exprNode* n3 = new multNode(n2, v);
-    exprNode* root = n3;/*new multNode(n1, v);*/
+    exprNode* s = new tanNode(v);
+    // exprNode* n1 = new multNode(v,v);
+    // exprNode* n2 = new multNode(n1,n1);
+    // exprNode* n3 = new multNode(n2, v);
+    exprNode* root = s;
 
 
     Globals::camera.move(Globals::camera.view.getSize().x / -2, Globals::camera.view.getSize().y / -2);

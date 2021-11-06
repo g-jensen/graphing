@@ -145,21 +145,27 @@
   <ItemGroup>
     <ClCompile Include="addNode.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="cosNode.cpp" />
     <ClCompile Include="divideNode.cpp" />
     <ClCompile Include="exprNode.cpp" />
     <ClCompile Include="graphing.cpp" />
     <ClCompile Include="multNode.cpp" />
     <ClCompile Include="numNode.cpp" />
+    <ClCompile Include="sinNode.cpp" />
+    <ClCompile Include="tanNode.cpp" />
     <ClCompile Include="variableNode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="addNode.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="cosNode.h" />
     <ClInclude Include="divideNode.h" />
     <ClInclude Include="exprNode.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="multNode.h" />
     <ClInclude Include="numNode.h" />
+    <ClInclude Include="sinNode.h" />
+    <ClInclude Include="tanNode.h" />
     <ClInclude Include="variableNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
