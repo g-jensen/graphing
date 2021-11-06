@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "Camera.h"
+#include "OverlayUI.h"
 #include <iostream>
 #include "Globals.h"
 
@@ -163,7 +164,7 @@ int main()
                     Globals::camera.move(0, Globals::camera.zoomScale * Globals::camera.moveSpeed);
                 }
             }
-        }
+        }   
 
         // std::cout << Globals::window.mapPixelToCoords(sf::Mouse::getPosition(Globals::window)).x << ", " << Globals::window.mapPixelToCoords(sf::Mouse::getPosition(Globals::window)).y << std::endl;
         // std::cout << Globals::camera.zoomScale << std::endl;
