@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <iostream>
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 #include "Camera.h"
 #include "Globals.h"
@@ -12,6 +14,12 @@
 #include "sinNode.h"
 #include "cosNode.h"
 #include "tanNode.h"
+
+float length(sf::Vector2f v1, sf::Vector2f v2) {
+    float dy = v2.y - v1.y;
+    float dx = v2.x - v1.x;
+    return sqrt((dy * dy) + (dx * dx));
+}
 
 // removes the trailing zeros of a number
 // ex: 15.430000 -> 15.43
@@ -32,32 +40,33 @@ sf::Vector2f plot(sf::Vector2f v) {
     return sf::Vector2f(v.x,-v.y);
 }
 
+sf::RectangleShape line(sf::Vector2f pos1, sf::Vector2f pos2, float thickness) {
+    sf::RectangleShape line;
+    float len = length(pos1, pos2);
+    line.setPosition(pos1);
+    line.setSize(sf::Vector2f(len,thickness));
+    line.setRotation(atan((pos2.y - pos1.y) / (pos2.x - pos1.x)) * 180.0/M_PI);
+    return line;
+}
+
 // Returns the circles to draw of a function
-std::vector<sf::CircleShape> getGraph(exprNode* root) {
-    std::vector<sf::CircleShape> output;
+std::vector<sf::RectangleShape> getGraph(exprNode* root) {
+    std::vector<sf::RectangleShape> output;
     sf::View view = Globals::window->getView();
+
+    float increment = 0.1 * (Globals::camera.zoomScale / 0.0171801f);
 
     for (
             float x = view.getCenter().x - (view.getSize().x / 2.0f);
             x <= view.getCenter().x + (view.getSize().x / 2.0f); 
-            x += 0.1 * (Globals::camera.zoomScale / 0.0171801f)
+            x += increment
         ) {
-        sf::CircleShape circle;
-        //circle.setSize(sf::Vector2f(Globals::camera.zoomScale * 2, Globals::camera.zoomScale * 2));
-        circle.setRadius(Globals::camera.zoomScale * 2);
 
+        sf::Vector2f pos1 = plot(sf::Vector2f(x,root->eval(x)));
+        sf::Vector2f pos2 = plot(sf::Vector2f(x + increment, root->eval(x + increment)));
 
-
-        circle.setPosition(
-            plot(
-                sf::Vector2f(x,root->eval(x))
-            )
-        );
-
-
-
-        if (circle.getPosition().y >= view.getCenter().y - view.getSize().y / 2.0 && circle.getPosition().y <= view.getCenter().y + view.getSize().y / 2.0) {
-            output.push_back(circle);
+        if (pos1.y >= view.getCenter().y - view.getSize().y / 2.0 && pos1.y <= view.getCenter().y + view.getSize().y / 2.0) {
+            output.push_back(line(pos1,pos2,Globals::camera.zoomScale * 2));
         }
     }
 
@@ -140,10 +149,7 @@ sf::RectangleShape yaxis() {
 int main()
 {
     exprNode* v = new variableNode();
-    exprNode* s = new tanNode(v);
-    // exprNode* n1 = new multNode(v,v);
-    // exprNode* n2 = new multNode(n1,n1);
-    // exprNode* n3 = new multNode(n2, v);
+    exprNode* s = new sinNode(v);
     exprNode* root = s;
 
 
@@ -185,9 +191,6 @@ int main()
             }
         }
 
-        // std::cout << Globals::window.mapPixelToCoords(sf::Mouse::getPosition(Globals::window)).x << ", " << Globals::window.mapPixelToCoords(sf::Mouse::getPosition(Globals::window)).y << std::endl;
-        // std::cout << Globals::camera.zoomScale << std::endl;
-
         // clear the window with black color
         Globals::window->clear(sf::Color::Black);
 
@@ -195,9 +198,7 @@ int main()
         Globals::window->draw(xaxis());
         Globals::window->draw(yaxis());
 
-        
-
-        std::vector<sf::CircleShape> graph = getGraph(root);
+        std::vector<sf::RectangleShape> graph = getGraph(root);
         // std::cout << graph.size() << std::endl;
         for (auto i : graph) {
             Globals::window->draw(i);
