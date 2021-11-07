@@ -1,8 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-#include "OverlayUI.h"
-
 #include <iostream>
 #define _USE_MATH_DEFINES
 #include <math.h>
