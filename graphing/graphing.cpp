@@ -1,5 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
+
+#include "OverlayUI.h"
+
 #include <iostream>
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -180,7 +183,7 @@ int main()
                     Globals::camera.move(0, Globals::camera.zoomScale * Globals::camera.moveSpeed);
                 }
             }
-        }
+        }   
 
         Globals::window->clear(sf::Color::Black);
 

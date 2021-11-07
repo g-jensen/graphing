@@ -156,6 +156,7 @@
     <ClCompile Include="sinNode.cpp" />
     <ClCompile Include="tanNode.cpp" />
     <ClCompile Include="variableNode.cpp" />
+    <ClCompile Include="OverlayUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="addNode.h" />
@@ -172,6 +173,7 @@
     <ClInclude Include="sinNode.h" />
     <ClInclude Include="tanNode.h" />
     <ClInclude Include="variableNode.h" />
+    <ClInclude Include="OverlayUI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

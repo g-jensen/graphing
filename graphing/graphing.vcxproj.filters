@@ -52,6 +52,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Presets.cpp">
+    <ClCompile Include="OverlayUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -96,6 +97,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Nodes.h">
+    <ClInclude Include="OverlayUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
