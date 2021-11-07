@@ -14,6 +14,7 @@
 #include "sinNode.h"
 #include "cosNode.h"
 #include "tanNode.h"
+#include "exponentNode.h"
 
 float length(sf::Vector2f v1, sf::Vector2f v2) {
     float dy = v2.y - v1.y;
@@ -149,8 +150,9 @@ sf::RectangleShape yaxis() {
 int main()
 {
     exprNode* v = new variableNode();
-    exprNode* s = new sinNode(v);
-    exprNode* root = s;
+    exprNode* n1 = new numNode(1.0/2.0);
+    exprNode* e = new exponentNode(v,n1);
+    exprNode* root = e;
 
 
     Globals::camera.move(Globals::camera.view.getSize().x / -2, Globals::camera.view.getSize().y / -2);

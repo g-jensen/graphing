@@ -147,6 +147,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="cosNode.cpp" />
     <ClCompile Include="divideNode.cpp" />
+    <ClCompile Include="exponentNode.cpp" />
     <ClCompile Include="exprNode.cpp" />
     <ClCompile Include="graphing.cpp" />
     <ClCompile Include="multNode.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="cosNode.h" />
     <ClInclude Include="divideNode.h" />
+    <ClInclude Include="exponentNode.h" />
     <ClInclude Include="exprNode.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="multNode.h" />

@@ -48,6 +48,9 @@
     <ClCompile Include="tanNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="exponentNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -81,6 +84,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tanNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exponentNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
