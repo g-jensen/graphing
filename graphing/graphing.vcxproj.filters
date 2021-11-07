@@ -51,6 +51,9 @@
     <ClCompile Include="exponentNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Presets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -87,6 +90,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="exponentNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Presets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

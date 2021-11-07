@@ -6,15 +6,8 @@
 
 #include "Camera.h"
 #include "Globals.h"
-#include "addNode.h"
-#include "numNode.h"
-#include "multNode.h"
-#include "divideNode.h"
-#include "variableNode.h"
-#include "sinNode.h"
-#include "cosNode.h"
-#include "tanNode.h"
-#include "exponentNode.h"
+#include "Nodes.h"
+#include "Presets.h"
 
 float length(sf::Vector2f v1, sf::Vector2f v2) {
     float dy = v2.y - v1.y;
@@ -120,7 +113,7 @@ std::vector<sf::Text> xNumberline() {
     if (0 >= start && 0 <= farRightX) {
         sf::Text zero;
         zero.setFont(font);
-        zero.setScale(Globals::camera.zoomScale, Globals::camera.zoomScale);
+        zero.setScale(Globals::camera.zoomScale/2.0, Globals::camera.zoomScale/2.0);
         zero.setString("0");
         zero.setPosition(plot(sf::Vector2f(0, -0.1 * Globals::camera.zoomScale / 0.0171801f)));
         output.push_back(zero);
@@ -129,7 +122,7 @@ std::vector<sf::Text> xNumberline() {
     for (long double x = start; x <= end; x += increment) {
         sf::Text text;
         text.setFont(font);
-        text.setScale(Globals::camera.zoomScale, Globals::camera.zoomScale);
+        text.setScale(Globals::camera.zoomScale/2.0, Globals::camera.zoomScale/2.0);
         text.setString(trimZeros(std::to_string(x)));
         text.setPosition(plot(sf::Vector2f(x,-0.1 * Globals::camera.zoomScale / 0.0171801f)));
         output.push_back(text);
@@ -149,10 +142,7 @@ sf::RectangleShape yaxis() {
 
 int main()
 {
-    exprNode* v = new variableNode();
-    exprNode* n1 = new numNode(1.0/2.0);
-    exprNode* e = new exponentNode(v,n1);
-    exprNode* root = e;
+    exprNode* root = Presets::quadratic();
 
 
     Globals::camera.move(Globals::camera.view.getSize().x / -2, Globals::camera.view.getSize().y / -2);
