@@ -40,10 +40,11 @@ sf::RectangleShape line(sf::Vector2f pos1, sf::Vector2f pos2, float thickness) {
     line.setPosition(pos1);
     line.setSize(sf::Vector2f(len,thickness));
     line.setRotation(atan((pos2.y - pos1.y) / (pos2.x - pos1.x)) * 180.0/M_PI);
+    line.setFillColor(sf::Color::Green);
     return line;
 }
 
-// Returns the circles to draw of a function
+// Returns the rectangles to draw of a function
 std::vector<sf::RectangleShape> getGraph(exprNode* root) {
     std::vector<sf::RectangleShape> output;
     sf::View view = Globals::window->getView();
@@ -127,7 +128,6 @@ std::vector<sf::Text> xNumberline() {
         text.setPosition(plot(sf::Vector2f(x,-0.1 * Globals::camera.zoomScale / 0.0171801f)));
         output.push_back(text);
     }
-    // std::cout << output.size() << std::endl;
     return output;
 }
 
@@ -142,20 +142,19 @@ sf::RectangleShape yaxis() {
 
 int main()
 {
-    exprNode* root = Presets::quadratic();
+    exprNode* root = Presets::linear();
 
 
     Globals::camera.move(Globals::camera.view.getSize().x / -2, Globals::camera.view.getSize().y / -2);
     Globals::camera.zoom(0.0171801f);
-    // run the program as long as the window is open
+
     while (Globals::window->isOpen())
     {
+        Globals::window->setView(Globals::camera.view);
         Globals::window->setFramerateLimit(100);
-        // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
         while (Globals::window->pollEvent(event))
         {
-            // "close requested" event: we close the window
             if (event.type == sf::Event::Closed) {
                 Globals::window->close();
             }
@@ -183,10 +182,8 @@ int main()
             }
         }
 
-        // clear the window with black color
         Globals::window->clear(sf::Color::Black);
 
-        // draw everything here...
         Globals::window->draw(xaxis());
         Globals::window->draw(yaxis());
 
@@ -203,8 +200,6 @@ int main()
 
         // end the current frame
         Globals::window->display();
-
-        Globals::window->setView(Globals::camera.view);
     }
 
     delete Globals::window;
