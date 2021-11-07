@@ -21,6 +21,37 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="exprNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="numNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="addNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="multNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="divideNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="variableNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sinNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cosNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tanNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exponentNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presets.cpp">
     <ClCompile Include="OverlayUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -32,6 +63,40 @@
     <ClInclude Include="Globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="exprNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="numNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="addNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="multNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="divideNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="variableNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sinNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cosNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tanNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exponentNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Presets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes.h">
     <ClInclude Include="OverlayUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>

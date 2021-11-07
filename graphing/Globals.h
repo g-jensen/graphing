@@ -25,7 +25,7 @@ public:
 
 // bool Globals::fontHasBeenLoaded = false;
 sf::ContextSettings Globals::settings = sf::ContextSettings(0,0,8);
-sf::RenderWindow* Globals::window = new sf::RenderWindow(sf::VideoMode(1520, 980), "My window", sf::Style::Default,Globals::settings);
+sf::RenderWindow* Globals::window = new sf::RenderWindow(sf::VideoMode(1600, 900), "Graphing", sf::Style::Default,Globals::settings);
 Camera Globals::camera(*Globals::window);
 
 

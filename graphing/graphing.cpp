@@ -1,14 +1,22 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "Camera.h"
+
 #include "OverlayUI.h"
+
 #include <iostream>
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+#include "Camera.h"
 #include "Globals.h"
+#include "Nodes.h"
+#include "Presets.h"
 
-
-//sf::RectangleShape linear(float slope, float yintercept) {
-//
-//}
+float length(sf::Vector2f v1, sf::Vector2f v2) {
+    float dy = v2.y - v1.y;
+    float dx = v2.x - v1.x;
+    return sqrt((dy * dy) + (dx * dx));
+}
 
 // removes the trailing zeros of a number
 // ex: 15.430000 -> 15.43
@@ -29,27 +37,37 @@ sf::Vector2f plot(sf::Vector2f v) {
     return sf::Vector2f(v.x,-v.y);
 }
 
-// Returns the circles part of a quadratic function
-std::vector<sf::CircleShape> quadratic(float coef, float xOffset, float yOffset) {
-    std::vector<sf::CircleShape> output;
+sf::RectangleShape line(sf::Vector2f pos1, sf::Vector2f pos2, float thickness) {
+    sf::RectangleShape line;
+    float len = length(pos1, pos2);
+    line.setPosition(pos1);
+    line.setSize(sf::Vector2f(len,thickness));
+    line.setRotation(atan((pos2.y - pos1.y) / (pos2.x - pos1.x)) * 180.0/M_PI);
+    line.setFillColor(sf::Color::Green);
+    return line;
+}
+
+// Returns the rectangles to draw of a function
+std::vector<sf::RectangleShape> getGraph(exprNode* root) {
+    std::vector<sf::RectangleShape> output;
     sf::View view = Globals::window->getView();
+
+    float increment = 0.1 * (Globals::camera.zoomScale / 0.0171801f);
+
     for (
-            float x = view.getCenter().x - (view.getSize().x / 2.0f) - xOffset;
-            x <= view.getCenter().x + (view.getSize().x / 2.0f) - xOffset; 
-            x += 0.1 * (Globals::camera.zoomScale / 0.0171801f)
+            float x = view.getCenter().x - (view.getSize().x / 2.0f);
+            x <= view.getCenter().x + (view.getSize().x / 2.0f); 
+            x += increment
         ) {
-        sf::CircleShape circle;
-        //circle.setSize(sf::Vector2f(Globals::camera.zoomScale * 2, Globals::camera.zoomScale * 2));
-        circle.setRadius(Globals::camera.zoomScale * 2);
-        circle.setPosition(
-            plot(
-                sf::Vector2f(x + xOffset,coef * (x*x) + yOffset)
-            )
-        );
-        if (circle.getPosition().y >= view.getCenter().y - view.getSize().y / 2.0 && circle.getPosition().y <= view.getCenter().y + view.getSize().y / 2.0) {
-            output.push_back(circle);
+
+        sf::Vector2f pos1 = plot(sf::Vector2f(x,root->eval(x)));
+        sf::Vector2f pos2 = plot(sf::Vector2f(x + increment, root->eval(x + increment)));
+
+        if (pos1.y >= view.getCenter().y - view.getSize().y / 2.0 && pos1.y <= view.getCenter().y + view.getSize().y / 2.0) {
+            output.push_back(line(pos1,pos2,Globals::camera.zoomScale * 2));
         }
     }
+
     return output;
 }
 
@@ -99,7 +117,7 @@ std::vector<sf::Text> xNumberline() {
     if (0 >= start && 0 <= farRightX) {
         sf::Text zero;
         zero.setFont(font);
-        zero.setScale(Globals::camera.zoomScale, Globals::camera.zoomScale);
+        zero.setScale(Globals::camera.zoomScale/2.0, Globals::camera.zoomScale/2.0);
         zero.setString("0");
         zero.setPosition(plot(sf::Vector2f(0, -0.1 * Globals::camera.zoomScale / 0.0171801f)));
         output.push_back(zero);
@@ -108,12 +126,11 @@ std::vector<sf::Text> xNumberline() {
     for (long double x = start; x <= end; x += increment) {
         sf::Text text;
         text.setFont(font);
-        text.setScale(Globals::camera.zoomScale, Globals::camera.zoomScale);
+        text.setScale(Globals::camera.zoomScale/2.0, Globals::camera.zoomScale/2.0);
         text.setString(trimZeros(std::to_string(x)));
         text.setPosition(plot(sf::Vector2f(x,-0.1 * Globals::camera.zoomScale / 0.0171801f)));
         output.push_back(text);
     }
-    std::cout << output.size() << std::endl;
     return output;
 }
 
@@ -128,17 +145,19 @@ sf::RectangleShape yaxis() {
 
 int main()
 {
+    exprNode* root = Presets::linear();
+
+
     Globals::camera.move(Globals::camera.view.getSize().x / -2, Globals::camera.view.getSize().y / -2);
     Globals::camera.zoom(0.0171801f);
-    // run the program as long as the window is open
+
     while (Globals::window->isOpen())
     {
+        Globals::window->setView(Globals::camera.view);
         Globals::window->setFramerateLimit(100);
-        // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
         while (Globals::window->pollEvent(event))
         {
-            // "close requested" event: we close the window
             if (event.type == sf::Event::Closed) {
                 Globals::window->close();
             }
@@ -166,17 +185,12 @@ int main()
             }
         }   
 
-        // std::cout << Globals::window.mapPixelToCoords(sf::Mouse::getPosition(Globals::window)).x << ", " << Globals::window.mapPixelToCoords(sf::Mouse::getPosition(Globals::window)).y << std::endl;
-        // std::cout << Globals::camera.zoomScale << std::endl;
-
-        // clear the window with black color
         Globals::window->clear(sf::Color::Black);
 
-        // draw everything here...
         Globals::window->draw(xaxis());
         Globals::window->draw(yaxis());
 
-        std::vector<sf::CircleShape> graph = quadratic(1, 1, 0);
+        std::vector<sf::RectangleShape> graph = getGraph(root);
         // std::cout << graph.size() << std::endl;
         for (auto i : graph) {
             Globals::window->draw(i);
@@ -189,11 +203,11 @@ int main()
 
         // end the current frame
         Globals::window->display();
-
-        Globals::window->setView(Globals::camera.view);
     }
 
     delete Globals::window;
+
+    delete root;
 
     return 0;
 }
