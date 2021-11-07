@@ -1,6 +1,6 @@
+/*
 #include "OverlayUI.h"
-#include "Camera.h"
-#include <iostream>
+
 
 
 	
@@ -9,7 +9,7 @@ sf::RectangleShape OverlayUI::createInverseButton()
 	sf::RectangleShape output;
 	
 	output.setSize(sf::Vector2f(200, 200));
-	output.setPosition(sf::Vector2f(150 /* Camera.zoomScale */, 125 /* Camera.zoomScale*/));
+	output.setPosition(sf::Vector2f(150 * Globals::camera.zoomScale, 125 * Globals::camera.zoomScale));
 
 
 	return output;
@@ -50,3 +50,4 @@ std::string OverlayUI::setFunction(std::string input)
 
 	return function;
 }
+*/
