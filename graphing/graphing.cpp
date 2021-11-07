@@ -61,7 +61,7 @@ std::vector<sf::RectangleShape> getGraph(exprNode* root) {
         sf::Vector2f pos1 = plot(sf::Vector2f(x,root->eval(x)));
         sf::Vector2f pos2 = plot(sf::Vector2f(x + increment, root->eval(x + increment)));
 
-        if (pos1.y >= view.getCenter().y - view.getSize().y / 2.0 && pos1.y <= view.getCenter().y + view.getSize().y / 2.0) {
+        if (pos1.y >= view.getCenter().y - view.getSize().y / 2.0 || pos1.y <= view.getCenter().y + view.getSize().y / 2.0) {
             output.push_back(line(pos1,pos2,Globals::camera.zoomScale * 2));
         }
     }
@@ -141,9 +141,55 @@ sf::RectangleShape yaxis() {
     return output;
 }
 
+std::vector<sf::Text> yNumberline() {
+    font.loadFromFile("fonts/Ubuntu-Regular.ttf");
+    std::vector<sf::Text> output;
+    sf::View view = Globals::camera.view;
+
+    int farLeftX = view.getCenter().y - (view.getSize().y / 2.0f);
+    long double farRightX = view.getCenter().y + (view.getSize().y / 2.0f);
+
+    long double increment = 5.f * Globals::camera.zoomScale / 0.0171801f;
+
+    long double start = 0;
+    while (start > farLeftX) {
+        start -= increment;
+    }
+    if (start == 0) {
+        while (start < farLeftX) {
+            start += increment;
+        }
+        start -= increment;
+    }
+
+    long double end = 0;
+    while (end < farRightX) {
+        end += increment;
+    }
+    if (end == 0) {
+        while (end > farRightX) {
+            end -= increment;
+        }
+        end += increment;
+    }
+
+    for (long double x = -start; x >= -end; x -= increment) {
+        if (x != 0) {
+            sf::Text text;
+            text.setFont(font);
+            text.setScale(Globals::camera.zoomScale / 2.0, Globals::camera.zoomScale / 2.0);
+            text.setString(trimZeros(std::to_string(x)));
+            text.setPosition(plot(sf::Vector2f(0.1 * Globals::camera.zoomScale / 0.0171801f,x)));
+            output.push_back(text);
+        }
+    }
+    std::cout << output.size() << std::endl;
+    return output;
+}
+
 int main()
 {
-    exprNode* root = Presets::linear();
+    exprNode* root = Presets::quadratic();
 
 
     Globals::camera.move(Globals::camera.view.getSize().x / -2, Globals::camera.view.getSize().y / -2);
@@ -196,6 +242,11 @@ int main()
         
         std::vector<sf::Text> xNumbers = xNumberline();
         for (auto i : xNumbers) {
+            Globals::window->draw(i);
+        }
+
+        std::vector<sf::Text> yNumbers = yNumberline();
+        for (auto i : yNumbers) {
             Globals::window->draw(i);
         }
 
