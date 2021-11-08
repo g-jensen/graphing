@@ -5,11 +5,13 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
+#include "PostFix.h"
 #include "Camera.h"
 #include "Globals.h"
 #include "Nodes.h"
 #include "Presets.h"
 
+// returns length between two vectors
 float length(sf::Vector2f v1, sf::Vector2f v2) {
     float dy = v2.y - v1.y;
     float dx = v2.x - v1.x;
@@ -35,6 +37,7 @@ sf::Vector2f plot(sf::Vector2f v) {
     return sf::Vector2f(v.x,-v.y);
 }
 
+// returns a rectangle that goes from pos1 to pos2 and has a width of thickness
 sf::RectangleShape line(sf::Vector2f pos1, sf::Vector2f pos2, float thickness) {
     sf::RectangleShape line;
     float len = length(pos1, pos2);
@@ -141,33 +144,34 @@ sf::RectangleShape yaxis() {
     return output;
 }
 
+// clone of xNumberLine() but for y values
 std::vector<sf::Text> yNumberline() {
     font.loadFromFile("fonts/Ubuntu-Regular.ttf");
     std::vector<sf::Text> output;
     sf::View view = Globals::camera.view;
 
-    int farLeftX = view.getCenter().y - (view.getSize().y / 2.0f);
-    long double farRightX = view.getCenter().y + (view.getSize().y / 2.0f);
+    int farLeftY = view.getCenter().y - (view.getSize().y / 2.0f);
+    long double farRightY = view.getCenter().y + (view.getSize().y / 2.0f);
 
     long double increment = 5.f * Globals::camera.zoomScale / 0.0171801f;
 
     long double start = 0;
-    while (start > farLeftX) {
+    while (start > farLeftY) {
         start -= increment;
     }
     if (start == 0) {
-        while (start < farLeftX) {
+        while (start < farLeftY) {
             start += increment;
         }
         start -= increment;
     }
 
     long double end = 0;
-    while (end < farRightX) {
+    while (end < farRightY) {
         end += increment;
     }
     if (end == 0) {
-        while (end > farRightX) {
+        while (end > farRightY) {
             end -= increment;
         }
         end += increment;
@@ -183,13 +187,12 @@ std::vector<sf::Text> yNumberline() {
             output.push_back(text);
         }
     }
-    std::cout << output.size() << std::endl;
     return output;
 }
 
 int main()
 {
-    exprNode* root = Presets::quadratic();
+    /*exprNode* root = Presets::linear();
 
 
     Globals::camera.move(Globals::camera.view.getSize().x / -2, Globals::camera.view.getSize().y / -2);
@@ -252,11 +255,15 @@ int main()
 
         // end the current frame
         Globals::window->display();
-    }
+    }*/
 
     delete Globals::window;
 
-    delete root;
+    //delete root;
+
+    std::cout << PostFix::InfixToPostfix("5*2") << std::endl;
+
+    std::cin.get();
 
     return 0;
 }

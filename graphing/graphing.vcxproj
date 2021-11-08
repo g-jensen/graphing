@@ -152,6 +152,7 @@
     <ClCompile Include="graphing.cpp" />
     <ClCompile Include="multNode.cpp" />
     <ClCompile Include="numNode.cpp" />
+    <ClCompile Include="PostFix.cpp" />
     <ClCompile Include="Presets.cpp" />
     <ClCompile Include="sinNode.cpp" />
     <ClCompile Include="tanNode.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="multNode.h" />
     <ClInclude Include="Nodes.h" />
     <ClInclude Include="numNode.h" />
+    <ClInclude Include="PostFix.h" />
     <ClInclude Include="Presets.h" />
     <ClInclude Include="sinNode.h" />
     <ClInclude Include="tanNode.h" />

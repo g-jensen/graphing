@@ -1,104 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="addNode.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="cosNode.cpp" />
+    <ClCompile Include="divideNode.cpp" />
+    <ClCompile Include="exponentNode.cpp" />
+    <ClCompile Include="exprNode.cpp" />
+    <ClCompile Include="graphing.cpp" />
+    <ClCompile Include="multNode.cpp" />
+    <ClCompile Include="numNode.cpp" />
+    <ClCompile Include="Presets.cpp" />
+    <ClCompile Include="sinNode.cpp" />
+    <ClCompile Include="tanNode.cpp" />
+    <ClCompile Include="variableNode.cpp" />
+    <ClCompile Include="OverlayUI.cpp" />
+    <ClCompile Include="PostFix.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="graphing.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="exprNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="numNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="addNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="multNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="divideNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="variableNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sinNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cosNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tanNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="exponentNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Presets.cpp">
-    <ClCompile Include="OverlayUI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="exprNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="numNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="addNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="multNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="divideNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="variableNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sinNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cosNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="tanNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="exponentNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Presets.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Nodes.h">
-    <ClInclude Include="OverlayUI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="addNode.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="cosNode.h" />
+    <ClInclude Include="divideNode.h" />
+    <ClInclude Include="exponentNode.h" />
+    <ClInclude Include="exprNode.h" />
+    <ClInclude Include="Globals.h" />
+    <ClInclude Include="multNode.h" />
+    <ClInclude Include="Nodes.h" />
+    <ClInclude Include="numNode.h" />
+    <ClInclude Include="Presets.h" />
+    <ClInclude Include="sinNode.h" />
+    <ClInclude Include="tanNode.h" />
+    <ClInclude Include="variableNode.h" />
+    <ClInclude Include="OverlayUI.h" />
+    <ClInclude Include="PostFix.h" />
   </ItemGroup>
 </Project>
