@@ -9,3 +9,4 @@
 #include "cosNode.h"
 #include "tanNode.h"
 #include "exponentNode.h"
+#include "subtractNode.h"

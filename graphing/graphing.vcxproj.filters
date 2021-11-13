@@ -16,6 +16,11 @@
     <ClCompile Include="variableNode.cpp" />
     <ClCompile Include="OverlayUI.cpp" />
     <ClCompile Include="PostFix.cpp" />
+    <ClCompile Include="AddNodeFactory.cpp" />
+    <ClCompile Include="MultNodeFactory.cpp" />
+    <ClCompile Include="subtractNode.cpp" />
+    <ClCompile Include="SubtractNodeFactory.cpp" />
+    <ClCompile Include="DivideNodeFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="addNode.h" />
@@ -34,5 +39,12 @@
     <ClInclude Include="variableNode.h" />
     <ClInclude Include="OverlayUI.h" />
     <ClInclude Include="PostFix.h" />
+    <ClInclude Include="INodeFactory.h" />
+    <ClInclude Include="AddNodeFactory.h" />
+    <ClInclude Include="MultNodeFactory.h" />
+    <ClInclude Include="NodeFactories.h" />
+    <ClInclude Include="subtractNode.h" />
+    <ClInclude Include="SubtractNodeFactory.h" />
+    <ClInclude Include="DivideNodeFactory.h" />
   </ItemGroup>
 </Project>

@@ -192,8 +192,12 @@ std::vector<sf::Text> yNumberline() {
 
 int main()
 {
-    /*exprNode* root = Presets::linear();
+    exprNode* root = Presets::sine();
 
+    std::vector<sf::CircleShape> points;
+    std::vector<sf::RectangleShape> lines;
+    sf::Vector2f start;
+    bool hasClicked = false;
 
     Globals::camera.move(Globals::camera.view.getSize().x / -2, Globals::camera.view.getSize().y / -2);
     Globals::camera.zoom(0.0171801f);
@@ -229,10 +233,63 @@ int main()
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
                     Globals::camera.move(0, Globals::camera.zoomScale * Globals::camera.moveSpeed);
                 }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
+                    points.clear();
+                    lines.clear();
+                }
+            }
+            if (event.type == sf::Event::MouseButtonPressed) {
+                if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                    sf::CircleShape point(Globals::camera.zoomScale * 5);
+                    sf::Vector2f mouse = Globals::window->mapPixelToCoords(sf::Mouse::getPosition(*Globals::window));
+                    mouse.x -= point.getRadius();
+                    mouse.y -= point.getRadius();
+                    point.setPosition(mouse);
+                    point.setFillColor(sf::Color::Red);
+                    points.push_back(point);
+                }
+                if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
+                    sf::Vector2f mouse = Globals::window->mapPixelToCoords(sf::Mouse::getPosition(*Globals::window));
+                    for (int i = 0; i < points.size(); i++) {
+                        if (points[i].getGlobalBounds().contains(mouse)) {
+                            points.erase(points.begin() + i);
+                            break;
+                        }
+                    }
+                    for (int i = 0; i < lines.size(); i++) {
+                        if (lines[i].getGlobalBounds().contains(mouse)) {
+                            lines.erase(lines.begin() + i);
+                            break;
+                        }
+                    }
+                }
+                if (sf::Mouse::isButtonPressed(sf::Mouse::Middle)) {
+                    sf::Vector2f mouse = Globals::window->mapPixelToCoords(sf::Mouse::getPosition(*Globals::window));
+                    if (!hasClicked) {
+                        start = mouse;
+                        hasClicked = true;
+                    }
+                    else {
+                        sf::RectangleShape r;
+                        if (start.x < mouse.x) {
+                            r = line(start, mouse, Globals::camera.zoomScale * 3);
+                        }
+                        else {
+                            r = line(mouse, start, Globals::camera.zoomScale * 3);
+                        }
+                        r.setFillColor(sf::Color::Yellow);
+                        lines.push_back(r);
+                        hasClicked = false;
+                    }
+                }
             }
         }   
 
+
+
         Globals::window->clear(sf::Color::Black);
+
+        
 
         Globals::window->draw(xaxis());
         Globals::window->draw(yaxis());
@@ -253,17 +310,34 @@ int main()
             Globals::window->draw(i);
         }
 
+        for (auto& i : lines) {
+            i.setSize(sf::Vector2f(i.getSize().x, Globals::camera.zoomScale * 3));
+            Globals::window->draw(i);
+        }
+
+        for (auto& i : points) {
+            i.setRadius(Globals::camera.zoomScale * 5);
+            Globals::window->draw(i);
+        }
+
         // end the current frame
         Globals::window->display();
-    }*/
+    }
 
     delete Globals::window;
 
     //delete root;
 
-    std::cout << PostFix::InfixToPostfix("5*2") << std::endl;
+    //std::cout << "\"" << PostFix::InfixToPostfix("51 * (9+2)") << "\"" << std::endl;
 
-    std::cin.get();
+    std::string s = "51 * (9+2)";
+    auto v = PostFix::TokenizeString(s, ' ');
+
+    for (auto i : v) {
+        std::cout << i << std::endl;
+    }
+
+    //std::cin.get();
 
     return 0;
 }

@@ -144,35 +144,47 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="addNode.cpp" />
+    <ClCompile Include="AddNodeFactory.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="cosNode.cpp" />
     <ClCompile Include="divideNode.cpp" />
+    <ClCompile Include="DivideNodeFactory.cpp" />
     <ClCompile Include="exponentNode.cpp" />
     <ClCompile Include="exprNode.cpp" />
     <ClCompile Include="graphing.cpp" />
     <ClCompile Include="multNode.cpp" />
+    <ClCompile Include="MultNodeFactory.cpp" />
     <ClCompile Include="numNode.cpp" />
     <ClCompile Include="PostFix.cpp" />
     <ClCompile Include="Presets.cpp" />
     <ClCompile Include="sinNode.cpp" />
+    <ClCompile Include="subtractNode.cpp" />
+    <ClCompile Include="SubtractNodeFactory.cpp" />
     <ClCompile Include="tanNode.cpp" />
     <ClCompile Include="variableNode.cpp" />
     <ClCompile Include="OverlayUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="addNode.h" />
+    <ClInclude Include="AddNodeFactory.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="cosNode.h" />
     <ClInclude Include="divideNode.h" />
+    <ClInclude Include="DivideNodeFactory.h" />
     <ClInclude Include="exponentNode.h" />
     <ClInclude Include="exprNode.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="INodeFactory.h" />
     <ClInclude Include="multNode.h" />
+    <ClInclude Include="MultNodeFactory.h" />
+    <ClInclude Include="NodeFactories.h" />
     <ClInclude Include="Nodes.h" />
     <ClInclude Include="numNode.h" />
     <ClInclude Include="PostFix.h" />
     <ClInclude Include="Presets.h" />
     <ClInclude Include="sinNode.h" />
+    <ClInclude Include="subtractNode.h" />
+    <ClInclude Include="SubtractNodeFactory.h" />
     <ClInclude Include="tanNode.h" />
     <ClInclude Include="variableNode.h" />
     <ClInclude Include="OverlayUI.h" />
